@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilom - DanceFitnessSe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="flex-container">
+        <header>
+            <a href="index.html" class="main">
+                <img src="kepek/logo.png" alt="Dance Fitness SE Logo" class="header-logo">
+            </a>
+            
+            <div class="menu-gomb" id="hamburger-gomb">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 50 50">
+                    <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+                </svg>
+            </div>
+            
+            <div class="lista" id="mobil-menu">
+                <ul>
+                    <li><a href="index.html">Kezdőlap</a></li>
+                    <li><a href="orarend.html">Órarend</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                    <li><a href="jelentkezes.html">Csatlakozás</a></li>
+                    <li><a href="profil.html" class="active">Profilom</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <nav class="gep-menu">
+            <ul>
+                <li><a href="index.html">Kezdőlap</a></li>
+                <li><a href="orarend.html">Órarend</a></li>
+                <li><a href="rolunk.html">Rólunk</a></li>
+                <li><a href="jelentkezes.html">Csatlakozás</a></li>
+                <li><a href="profil.html" class="active">Profilom</a></li>
+            </ul>
+        </nav>
+
+        <article class="content-modern">
+            
+            <div class="profil-kartya card">
+                <div class="profil-header">
+                    <div class="profil-kep">
+                        <img src="kepek/logo.png" alt="Profilkép">
+                    </div>
+                    <div class="profil-adatok">
+                        <h2 id="profil-nev">Betöltés...</h2>
+                        <p id="profil-email">...</p>
+                        <span id="profil-korosztaly" class="badge">...</span>
+                    </div>
+                </div>
+                <div class="profil-stat">
+                    <div class="stat-item">
+                        <strong id="profil-edzes-szam">0</strong>
+                        <span>Felvett órák</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Aktív</strong>
+                        <span>Tagság</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vezerlo-panel card">
+                <h2>Heti Tervező</h2>
+                <p>Kattints a kártyára a jelentkezéshez vagy a lemondáshoz!</p>
+                <p id="tervezo-hiba" style="color: red; display: none; margin-bottom: 15px; font-weight: bold;"></p>
+                
+                <div id="heti-tervezo-kontener" class="foglalo-grid"></div>
+            </div>
+
+            <div class="tervezo-osszesito card">
+                <h2>Pénzügyi összesítés</h2>
+                <div class="osszesito-box ar">
+                    <h3>Fizetendő összeg</h3>
+                    <p id="vegosszeg">0 Ft</p>
+                </div>
+            </div>
+
+        </article>
+        <footer class="footer">
+            <p>© 2025 Dance Fitness SE</p>
+                <p>Jászberény, Korcsolya utca 5.</p>
+        </footer> 
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

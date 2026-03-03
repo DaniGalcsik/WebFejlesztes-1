@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelentkezés - DanceFitnessSe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="flex-container">
+        <header>
+            <a href="index.html" class="main">
+                <img src="kepek/logo.png" alt="Dance Fitness SE Logo" class="header-logo">
+            </a>
+            
+            <div class="menu-gomb" id="hamburger-gomb">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                    <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+                </svg>
+            </div>
+            
+            <div class="lista" id="mobil-menu">
+                <ul>
+                    <li><a href="index.html">Kezdőlap</a></li>
+                    <li><a href="orarend.html">Órarend</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                    <li><a href="jelentkezes.html" class="active">Csatlakozás</a></li>
+                    <li><a href="profil.html">Profilom</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <nav class="gep-menu">
+            <ul>
+                    <li><a href="index.html">Kezdőlap</a></li>
+                    <li><a href="orarend.html">Órarend</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                    <li><a href="jelentkezes.html" class="active">Csatlakozás</a></li>
+                    <li><a href="profil.html">Profilom</a></li>
+            </ul>
+        </nav>
+        <div class="hero-banner">
+            <div class="hero-szoveg">
+                <h1>Jelentkezés</h1>
+                <p>Csatlakozzon óráinkhoz és váltson bérletet online!</p>
+            </div>
+        </div>
+
+       <article class="content-modern">
+            
+            <div class="urlap-kontener">
+                <div class="auth-toggle">
+                    <button id="tab-login" class="toggle-btn active">Bejelentkezés</button>
+                    <button id="tab-register" class="toggle-btn">Regisztráció</button>
+                </div>
+
+                <h2 id="form-cim">Bejelentkezés</h2>
+                <p id="form-leiras">Adja meg adatait a belépéshez.</p>
+
+                <form id="jelentkezes-urlap">
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail cím:*</label>
+                        <input type="email" id="email" placeholder="pelda@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jelszo">Jelszó:*</label>
+                        <input type="password" id="jelszo" placeholder="Jelszó megadása">
+                    </div>
+
+                    <div id="regisztracios-mezok" style="display: none;">
+                        <div class="form-group">
+                            <label for="nev">Teljes név:*</label>
+                            <input type="text" id="nev" placeholder="Pl. Példa Pista">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefon">Telefonszám:*</label>
+                            <input type="tel" id="telefon" placeholder="06301234567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="szul-datum">Születési dátum:*</label>
+                            <input type="date" id="szul-datum">
+                        </div>
+                    </div>
+                    <div id="eredmeny-doboz" class="eredmeny-doboz rejtett"></div>
+
+                    <button type="button" id="kuld-gomb" class="kuld-gomb">Belépés</button>
+                </form>
+            </div>
+
+        </article>
+
+        <footer class="footer">
+            <p>© 2025 Dance Fitness SE</p>
+            <p>Jászberény, Korcsolya utca 5.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

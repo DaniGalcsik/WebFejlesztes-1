@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanceFitnessSe - Kezdőlap</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="flex-container">
+        <header>
+            <a href="index.html" class="main">
+                <img src="kepek/logo.png" alt="Dance Fitness SE Logo" class="header-logo">
+            </a>
+            
+            <div class="menu-gomb" id="hamburger-gomb">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 50 50">
+                    <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+                </svg>
+            </div>
+            
+            <div class="lista" id="mobil-menu">
+                <ul>
+                    <li><a href="index.html" class="active">Kezdőlap</a></li>
+                    <li><a href="orarend.html">Órarend</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                    <li><a href="jelentkezes.html">Csatlakozás</a></li>
+                    <li><a href="profil.html">Profilom</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <nav class="gep-menu">
+            <ul>
+                <li><a href="index.html" class="active">Kezdőlap</a></li>
+                <li><a href="orarend.html">Órarend</a></li>
+                <li><a href="rolunk.html">Rólunk</a></li>
+                <li><a href="jelentkezes.html">Csatlakozás</a></li>
+                <li><a href="profil.html">Profilom</a></li>
+            </ul>
+        </nav>
+
+        <section class="uj-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('kepek/dancefitness.jpg');">
+            <div class="hero-content">
+                <h1>Mozgás. Közösség. Egészség.</h1>
+                <p>Találd meg a ritmust és formáld az alakod profi oktatóinkkal!</p>
+                <a href="orarend.html" class="cta-gomb">Megnézem az órákat</a>
+            </div>
+        </section>
+
+        <article class="content-simple">
+            <div class="intro-text">
+                <h2>Legfrisebb Hírek</h2>
+                <p>Közelgő események, legutóbbi versenyeink eredménye egyhelyen.</p>
+            </div>
+
+            <div class="kartya-grid">
+                <div class="szolg-kartya">
+    <div class="kartya-kep">
+        <img src="kepek/dancefitness.jpg" alt="Gála"> 
+    </div>
+    <div class="kartya-szoveg">
+        <h3>Karácsonyi Gála</h3>
+        <p>Idén is megrendezzük a karácsonyi Gálánkat!</p>
+        
+        <a href="#" onclick="openModal(); return false;" class="link-arrow">Részletek &rarr;</a>
+    </div>
+</div>
+
+                <div class="szolg-kartya">
+                    <div class="kartya-kep">
+                        <img src="kepek/dancefitness.jpg" alt="Konditerem">
+                    </div>
+                    <div class="kartya-szoveg">
+                        <h3>Foglalj Online</h3>
+                        <p>Regisztrálj oldalunkra és foglalj helyet edzéseinkre pár katintással!</p>
+                        <a href="jelentkezes.html" class="link-arrow">Részletek &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="szolg-kartya">
+                    <div class="kartya-kep">
+                        <img src="kepek/dancefitness.jpg" alt="Gyerek torna">
+                    </div>
+                    <div class="kartya-szoveg">
+                        <h3>Tudj meg többet rólunk!</h3>
+                        <p>Ismerkedj meg a történetünkkel, terveinkkel és a versenyzőink eredményeinkkel!</p>
+                        <a href="rolunk.html" class="link-arrow">Részletek &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <footer class="footer">
+            <p>© 2025 Dance Fitness SE</p>
+            <p>Jászberény, Korcsolya utca 5.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+<div id="gala-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>🎄 Karácsonyi Gála 2025 🎄</h2>
+        <div class="modal-body">
+            <p><strong>Időpont:</strong> 2025. december 13., 17:00</p>
+            <p><strong>Helyszín:</strong> Bercsényi Sportcsarnok</p>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            
+            <p><strong>Jegyinformációk:</strong></p>
+            <ul style="text-align: left; margin-bottom: 15px;">
+                <li><strong>Belépő ára:</strong> 2000 Ft</li>
+                <li><strong>Tombola ára:</strong> 200 Ft / db</li>
+            </ul>
+            
+            <p style="background-color: #fff8f0; padding: 10px; border-radius: 5px; border: 1px solid #ffeace;">
+                🎫 <strong>Jegyek már elővételben is kaphatóak az edzőinknél!</strong>
+            </p>
+
+            <p style="color: #f58220; font-weight: bold; margin-top: 15px;">Gyertek el és zárjuk együtt az évet!</p>
+        </div>
+    </div>
+</div>
+</html>

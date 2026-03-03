@@ -1,0 +1,355 @@
+// ADATBÁZISOK, VÁLTOZÓK
+
+const orak = [
+    { id: 1, nev: "Tánc (ovis)", oktato: "Galcsik Gréta", tipus: "tanc", nap: "Hétfő", ido: "16:30", ar: 1500, limit: 15, jelentkezok: 12 },
+    { id: 2, nev: "Aerobik (versenyző)", oktato: "Kereszthidi Gabi", tipus: "Aerobik", nap: "Hétfő", ido: "17:30", ar: 2000, limit: 20, jelentkezok: 18 },
+    { id: 3, nev: "Köredzés (felnőtt)", oktato: "Kereszthidi Gabi", tipus: "ero", nap: "Hétfő", ido: "19:00", ar: 2500, limit: 15, jelentkezok: 5 },
+    { id: 4, nev: "Tánc (versenyző)", oktato: "Galcsik Gréta", tipus: "tanc", nap: "Kedd", ido: "16:00", ar: 2000, limit: 25, jelentkezok: 22 },
+    { id: 5, nev: "Aerobik (kezdő)", oktato: "Galcsik Gréta", tipus: "Aerobik", nap: "Kedd", ido: "18:00", ar: 2500, limit: 20, jelentkezok: 8 },
+    { id: 6, nev: "Kondi (felnőtt)", oktato: "Kereszthidi Gabi", tipus: "ero", nap: "Kedd", ido: "19:30", ar: 2500, limit: 30, jelentkezok: 12 },
+    { id: 7, nev: "Tánc (ovis)", oktato: "Galcsik Gréta", tipus: "tanc", nap: "Szerda", ido: "16:30", ar: 1500, limit: 15, jelentkezok: 15 }, 
+    { id: 8, nev: "Aerobik (versenyző)", oktato: "Kereszthidi Gabi", tipus: "Aerobik", nap: "Szerda", ido: "17:30", ar: 2000, limit: 20, jelentkezok: 15 },
+    { id: 9, nev: "Köredzés (felnőtt)", oktato: "Kereszthidi Gabi", tipus: "ero", nap: "Szerda", ido: "19:00", ar: 2500, limit: 15, jelentkezok: 14 },
+    { id: 10, nev: "Tánc (versenyző)", oktato: "Galcsik Gréta", tipus: "tanc", nap: "Csütörtök", ido: "16:00", ar: 2000, limit: 25, jelentkezok: 20 },
+    { id: 11, nev: "Aerobik (kezdő)", oktato: "Galcsik Gréta", tipus: "Aerobik", nap: "Csütörtök", ido: "18:00", ar: 2500, limit: 20, jelentkezok: 6 },
+    { id: 12, nev: "Kondi (felnőtt)", oktato: "Kereszthidi Gabi", tipus: "ero", nap: "Csütörtök", ido: "19:30", ar: 2500, limit: 30, jelentkezok: 25 },
+    { id: 13, nev: "Tánc (ovis)", oktato: "Galcsik Gréta", tipus: "tanc", nap: "Péntek", ido: "16:00", ar: 1500, limit: 15, jelentkezok: 4 },
+    { id: 14, nev: "Aerobik (versenyző)", oktato: "Kereszthidi Gabi", tipus: "Aerobik", nap: "Péntek", ido: "17:00", ar: 2000, limit: 20, jelentkezok: 19 },
+    { id: 15, nev: "Köredzés (felnőtt)", oktato: "Kereszthidi Gabi", tipus: "ero", nap: "Péntek", ido: "18:30", ar: 2500, limit: 15, jelentkezok: 15 } 
+];
+
+const esemenyek = [
+    { nev: "Magyar Kupa Döntő", arany: 2, ezust: 4, bronz: 1 },
+    { nev: "Diákolimpia Országos", arany: 3, ezust: 1, bronz: 0 },
+    { nev: "Fit-Kid Tata", arany: 1, ezust: 2, bronz: 2 },
+    { nev: "VilágBajnokság (Szerbia)", arany: 0, ezust: 1, bronz: 1 },
+    { nev: "Budapest Bajnokság", arany: 4, ezust: 0, bronz: 3 },
+    { nev: "Magyar Kupa (selejtező)", arany: 2, ezust: 2, bronz: 0 },
+    { nev: "IDF", arany: 0, ezust: 0, bronz: 1 },
+    { nev: "Kelet-Magyarországi Kupa", arany: 5, ezust: 3, bronz: 2 },
+    { nev: "Mikulás Kupa", arany: 1, ezust: 4, bronz: 2 },
+    { nev: "IDF Monor", arany: 2, ezust: 1, bronz: 1 },
+    { nev: "Debreceni barátságos", arany: 3, ezust: 2, bronz: 0 },
+];
+
+const felhasznalok = [
+    { email: "teszt@gmail.com", jelszo: "123456", nev: "Teszt Elek", telefon: "0123456789", datum: "2000-01-01" },
+    { email: "admin@dance.hu", jelszo: "admin123", nev: "Adminisztrátor", telefon: "000000000", datum: "2025-11-27"},
+    { email: "@", jelszo: "1", nev: "Adminisztrátor", telefon: "000000000", datum: "2025-11-27"}
+];
+
+
+let aktivFelhasznalo = null;
+let jelenlegiMod = "bejelentkezes"; 
+const napokSorrend = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek"];
+
+// OLDALT BETÖLTÉS
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // telefonos nézet
+    const hamburgerGomb = document.getElementById("hamburger-gomb");
+    const mobilMenu = document.getElementById("mobil-menu");
+    if (hamburgerGomb && mobilMenu) {
+        hamburgerGomb.onclick = function () { mobilMenu.classList.toggle("aktiv"); };
+    }
+
+    // Órarend az órarendhez
+    const teljesTablaTorzs = document.getElementById("teljes-orak-tabla-torzs");
+    if (teljesTablaTorzs) {
+        renderFullTable(orak);
+        updateCounter(orak);
+        
+        const kGomb = document.getElementById("kereses-gomb");
+        if(kGomb) kGomb.onclick = searchAndFilter;
+        
+        const kMezo = document.getElementById("kereso-mezo");
+        if(kMezo) kMezo.onkeyup = function(e) { if (e.key === "Enter" || e.keyCode === 13) searchAndFilter(); };
+        
+        const tSzuro = document.getElementById("tipus-szuro-lista");
+        if(tSzuro) tSzuro.onchange = searchAndFilter;
+    }
+
+    // Rólunk oldalhhoz, összesítés
+    const eredmenyLista = document.getElementById("eredmeny-lista");
+    if (eredmenyLista) generateEventStats(esemenyek);
+
+    // Jelentkezés oldal dolgai
+
+    const kuldGomb = document.getElementById("kuld-gomb");
+    if (kuldGomb) kuldGomb.onclick = handleAuthSubmit;
+    
+    const loginTab = document.getElementById("tab-login");
+    const regTab = document.getElementById("tab-register");
+    if (loginTab && regTab) {
+        loginTab.onclick = function() { toggleAuthMode("bejelentkezes"); };
+        regTab.onclick = function() { toggleAuthMode("regisztracio"); };
+    }
+
+    // Profil oldal dolgai
+    const profilNev = document.getElementById("profil-nev");
+    if (profilNev) {
+        // Szimulált Teszt Elek felhasználó
+        aktivFelhasznalo = {
+            nev: "Teszt Elek",
+            email: "Teszt.Elek@email.com",
+            korosztaly: "Teszt",
+            edzesekSzama: 0,
+            foglalasok: []
+        };
+        renderProfileData();
+    }
+});
+
+// Regisztráció
+
+function toggleAuthMode(mod) {
+    jelenlegiMod = mod;
+    const regMezok = document.getElementById("regisztracios-mezok");
+    const cim = document.getElementById("form-cim");
+    const leiras = document.getElementById("form-leiras");
+    const gomb = document.getElementById("kuld-gomb");
+    const loginBtn = document.getElementById("tab-login");
+    const regBtn = document.getElementById("tab-register");
+    const eredmeny = document.getElementById("eredmeny-doboz");
+
+    // Reset
+    if(eredmeny) { eredmeny.style.display = "none"; eredmeny.className = "eredmeny-doboz"; }
+
+    if (mod === "bejelentkezes") {
+        if(regMezok) regMezok.style.display = "none";
+        if(cim) cim.innerText = "Bejelentkezés";
+        if(leiras) leiras.innerText = "Adja meg adatait a belépéshez.";
+        if(gomb) gomb.innerText = "Belépés";
+        if(loginBtn) loginBtn.classList.add("active");
+        if(regBtn) regBtn.classList.remove("active");
+    } else {
+        if(regMezok) regMezok.style.display = "block";
+        if(cim) cim.innerText = "Regisztráció";
+        if(leiras) leiras.innerText = "Töltse ki az űrlapot a fiók létrehozásához.";
+        if(gomb) gomb.innerText = "Regisztráció";
+        if(regBtn) regBtn.classList.add("active");
+        if(loginBtn) loginBtn.classList.remove("active");
+    }
+}
+    const emailInput = document.getElementById("email");
+    const jelszoInput = document.getElementById("jelszo");
+
+    if(emailInput) emailInput.onkeyup = function(e) { if (e.key === "Enter" || e.keyCode === 13) handleAuthSubmit(); };
+    if(jelszoInput) jelszoInput.onkeyup = function(e) { if (e.key === "Enter" || e.keyCode === 13) handleAuthSubmit(); };
+// beléptetés
+function handleAuthSubmit() {
+
+    if (!emailInput || !jelszoInput) return;
+    const email = emailInput.value.trim();
+    const jelszo = jelszoInput.value.trim();
+
+    if (jelenlegiMod === "bejelentkezes") {
+        if (email === "" || jelszo === "") { mutasdAHibat("Kérem adja meg az adatokat!"); return; }
+        let talalat = null;
+        for (let i = 0; i < felhasznalok.length; i++) {
+            if (felhasznalok[i].email === email && felhasznalok[i].jelszo === jelszo) {
+                talalat = felhasznalok[i];
+                break;
+            }
+        }
+        if (talalat) mutasdASikert(`Sikeres belépés!<br>Üdv, ${talalat.nev}!`);
+        else mutasdAHibat("Hibás email vagy jelszó!");
+    } else {
+        const nevInput = document.getElementById("nev");
+        const datumInput = document.getElementById("szul-datum");
+        const telefonInput = document.getElementById("telefon");
+        const telefon = telefonInput.value.trim();
+
+        if(!nevInput) return;
+        
+        if (nevInput.value.length < 3) { mutasdAHibat("A név túl rövid!"); return; }
+        if (jelszoInput.value.length < 6) {mutasdAHibat("A jelszó túl rövid! Legalább 6 karakter"); return;}
+        if (!email.includes("@")) { mutasdAHibat("Helytelen e-mail formátum!"); return; }
+        if (telefonInput.value.length < 4) {mutasdAHibat("Kérem adja meg a telefonszámát!"); return;}
+        if (datumInput.value == "") {mutasdAHibat("Kérem adja meg a születési dátumát!"); return;}
+        felhasznalok.push({ email: email, jelszo: jelszo, nev: nevInput.value, telefon: telefon, datum: datumInput });
+        mutasdASikert("Sikeres regisztráció!<br>Most már bejelentkezhet.");
+    }
+}
+
+function mutasdAHibat(msg) {
+    const d = document.getElementById("eredmeny-doboz");
+    if(d) { d.innerHTML = "⚠️ " + msg; d.className = "eredmeny-doboz hibas"; d.style.display = "block"; }
+    else alert(msg);
+}
+
+function mutasdASikert(msg) {
+    const d = document.getElementById("eredmeny-doboz");
+    if(d) { d.innerHTML = "✅ " + msg; d.className = "eredmeny-doboz sikeres"; d.style.display = "block"; }
+    else alert(msg);
+}
+
+// Órarend render és keresés
+
+function renderFullTable(d) {
+    const t = document.getElementById("teljes-orak-tabla-torzs");
+    if (!t) return;
+    t.innerHTML = "";
+    d.forEach(o => t.innerHTML += `<tr><td>${o.nev}</td><td>${o.oktato}</td><td>${o.tipus}</td><td>${o.nap}</td><td>${o.ido}</td></tr>`);
+}
+
+function searchAndFilter() {
+    const s = document.getElementById("kereso-mezo").value.toLowerCase();
+    const t = document.getElementById("tipus-szuro-lista").value;
+    const res = orak.filter(o => (o.nev.toLowerCase().includes(s) || o.oktato.toLowerCase().includes(s)) && (t === "osszes" || o.tipus === t));
+    renderFullTable(res);
+    updateCounter(res);
+}
+
+function updateCounter(d) {
+    const e = document.getElementById("talalatok-szama");
+    if(e) e.innerHTML = d.length ? `Találatok: <strong>${d.length}</strong>` : "Nincs találat.";
+}
+
+// statisztika a Rólunk oldalhoz
+
+function generateEventStats(d) {
+    const l = document.getElementById("eredmeny-lista");
+    if(!l) return;
+    l.innerHTML = "";
+    let a=0, e=0, b=0;
+    d.forEach(ev => { a+=ev.arany||0; e+=ev.ezust||0; b+=ev.bronz||0; });
+    l.innerHTML = `<li>🥇 Arany: ${a} db</li><li>🥈 Ezüst: ${e} db</li><li>🥉 Bronz: ${b} db</li>`;
+}
+
+// helyfoglalás
+
+function renderProfileData() {
+    document.getElementById("profil-nev").innerText = aktivFelhasznalo.nev;
+    document.getElementById("profil-email").innerText = aktivFelhasznalo.email;
+    document.getElementById("profil-edzes-szam").innerText = aktivFelhasznalo.edzesekSzama;
+    document.getElementById("profil-korosztaly").innerText = aktivFelhasznalo.korosztaly;
+    
+    renderBookingGrid();
+    calculateTotal();
+}
+
+function renderBookingGrid() {
+    const kontener = document.getElementById("heti-tervezo-kontener");
+    if(!kontener) return;
+    kontener.innerHTML = "";
+
+    napokSorrend.forEach(nap => {
+        // Oszlop létrehozása
+        const oszlop = document.createElement("div");
+        oszlop.className = "nap-oszlop";
+        oszlop.innerHTML = `<div class="nap-fejlec">${nap}</div>`;
+
+        // Órák szűrése az adott napra
+        const napiOrak = orak.filter(o => o.nap === nap).sort((a,b) => a.ido.localeCompare(b.ido));
+
+        if(napiOrak.length === 0) {
+            oszlop.innerHTML += `<p style="text-align:center; color:#999; font-size:0.8rem;">Nincs óra</p>`;
+        } else {
+            napiOrak.forEach(ora => {
+                const marFelvettem = aktivFelhasznalo.foglalasok.some(f => f.id === ora.id);
+                const betelt = ora.jelentkezok >= ora.limit;
+                const szabadHely = ora.limit - ora.jelentkezok;
+
+                const kartya = document.createElement("div");
+                let osztalyok = "foglalo-kartya";
+                let badge = "";
+                let infoText = "";
+
+                // Státuszok beállítása
+                if (marFelvettem) {
+                    osztalyok += " felvett";
+                    badge = `<span class="statusz-badge">✅</span>`;
+                    infoText = "<strong>FELVÉTVE</strong> (Kattints a leadáshoz)";
+                } else if (betelt) {
+                    osztalyok += " betelt";
+                    badge = `<span class="statusz-badge">🔒</span>`;
+                    infoText = "BETELT";
+                } else {
+                    infoText = `Szabad: ${szabadHely} fő`;
+                }
+
+                kartya.className = osztalyok;
+                
+                // Óra felvevés, leadás
+                if (marFelvettem || !betelt) {
+                    kartya.setAttribute("onclick", `handleBooking(${ora.id})`);
+                }
+
+                // Tartalom renderelése
+                kartya.innerHTML = `
+                    ${badge}
+                    <span class="ora-ido">${ora.ido}</span>
+                    <span class="ora-cim">${ora.nev}</span>
+                    <div class="ora-info">
+                        ${ora.oktato}<br>
+                        ${ora.ar} Ft<br>
+                        ${infoText}
+                    </div>
+                `;
+                oszlop.appendChild(kartya);
+            });
+        }
+        kontener.appendChild(oszlop);
+    });
+}
+
+function handleBooking(id) {
+    const err = document.getElementById("tervezo-hiba");
+    if(err) err.style.display = "none";
+
+    // 1. Óra keresése
+    const ora = orak.find(o => o.id === id);
+    if(!ora) return;
+
+    // 2. LEADÁS (Ha már fel van véve)
+    const index = aktivFelhasznalo.foglalasok.findIndex(f => f.id === id);
+    if (index > -1) {
+        if (confirm(`Biztosan le szeretnéd adni ezt az órát?\n\n${ora.nev} (${ora.nap} ${ora.ido})`)) {
+            aktivFelhasznalo.foglalasok.splice(index, 1);
+            ora.jelentkezok--;
+            aktivFelhasznalo.edzesekSzama--;
+            renderProfileData();
+        }
+        return;
+    }
+
+    // 3. FELVÉTEL (Ha még nincs felvéve)
+    if(ora.jelentkezok >= ora.limit) {
+        if(err) { err.innerText = "Sajnos ez az óra már betelt!"; err.style.display = "block"; }
+        return;
+    }
+
+    ora.jelentkezok++;
+    aktivFelhasznalo.foglalasok.push(ora);
+    aktivFelhasznalo.edzesekSzama++;
+    renderProfileData();
+}
+
+function calculateTotal() {
+    let sum = 0;
+    aktivFelhasznalo.foglalasok.forEach(o => sum += o.ar);
+    const v = document.getElementById("vegosszeg");
+    if(v) v.innerText = sum + " Ft";
+}
+
+// felugró ablak
+
+function openModal() {
+    const m = document.getElementById("gala-modal");
+    if(m) m.style.display = "block";
+}
+
+function closeModal() {
+    const m = document.getElementById("gala-modal");
+    if(m) m.style.display = "none";
+}
+
+// Ablak bezárása, ha mellékattintanak
+window.addEventListener("click", function(event) {
+    const m = document.getElementById("gala-modal");
+    if (event.target == m) {
+        m.style.display = "none";
+    }
+});

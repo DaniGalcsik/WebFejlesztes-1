@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órarend - DanceFitnessSe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="flex-container">
+        <header>
+            <a href="index.html" class="main">
+                <img src="kepek/logo.png" alt="Dance Fitness SE Logo" class="header-logo">
+            </a>
+            <div class="menu-gomb" id="hamburger-gomb">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 50 50">
+                    <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+                </svg>
+            </div>
+            <div class="lista" id="mobil-menu">
+                <ul>
+                    <li><a href="index.html">Kezdőlap</a></li>
+                    <li><a href="orarend.html" class="active">Órarend</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                    <li><a href="jelentkezes.html">Csatlakozás</a></li>
+                    <li><a href="profil.html">Profilom</a></li>
+                </ul>
+            </div>
+        </header>
+        <nav class="gep-menu">
+            <ul>
+                <li><a href="index.html">Kezdőlap</a></li>
+                <li><a href="orarend.html" class="active">Órarend</a></li>
+                <li><a href="rolunk.html">Rólunk</a></li>
+                <li><a href="jelentkezes.html">Csatlakozás</a></li>
+                <li><a href="profil.html">Profilom</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-banner" >
+            <div class="hero-szoveg">
+                <h1>Órarend</h1>
+                <p>Találd meg a kedvenc órádat!</p>
+            </div>
+        </div>
+
+        <article class="content-modern">
+            
+            <div class="search-toolbar card">
+                <div class="search-group">
+                    <input type="text" id="kereso-mezo" placeholder="Keresés név vagy oktató alapján...">
+                </div>
+                <div class="search-group">
+                    <select id="tipus-szuro-lista">
+                        <option value="osszes">Minden típus</option>
+                        <option value="tanc">Tánc</option>
+                        <option value="Aerobik">Aerobik</option>
+                        <option value="ero">Erősítő</option>
+                        <option value="relax">Relax</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <button id="kereses-gomb">Keresés</button>
+                </div>
+            </div>
+
+            <p class="talalatok" id="talalatok-szama" style="text-align: center; margin-bottom: 10px; font-weight: bold;"></p>
+
+            <div class="table-container card">
+                <table id="teljes-orak-tabla" class="styled-table full-width">
+                    <thead>
+                        <tr>
+                            <th>Óra neve</th>
+                            <th>Oktató</th>
+                            <th>Típus</th>
+                            <th>Nap</th>
+                            <th>Időpont</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teljes-orak-tabla-torzs"></tbody>
+                </table>
+            </div>
+
+        </article>
+
+
+        <footer class="footer">
+            <p>© 2025 Dance Fitness SE</p>
+            <p>Jászberény, Korcsolya utca 5.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
